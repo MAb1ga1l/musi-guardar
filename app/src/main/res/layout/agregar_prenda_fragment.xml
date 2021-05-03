@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.agregadoPrenda.AgregarPrendaFragment">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="320dp"
+        android:layout_x="101dp"
+        android:layout_y="84dp"
+        android:gravity="center"
+        android:text="@string/text_prenda"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/button_ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.542"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.219" />
+
+    <Button
+        android:id="@+id/button_ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="64dp"
+        android:layout_marginLeft="64dp"
+        android:layout_x="41dp"
+        android:layout_y="265dp"
+        android:text="@string/buttonOK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.913" />
+
+    <Button
+        android:id="@+id/buttonCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_x="240dp"
+        android:layout_y="232dp"
+        android:text="@string/buttonCancel"
+        app:layout_constraintBottom_toBottomOf="@+id/button_ok"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.621"
+        app:layout_constraintStart_toEndOf="@+id/button_ok"
+        app:layout_constraintTop_toTopOf="@+id/button_ok"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textViewSeccion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/seccion_en_guardar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.065"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <TextView
+        android:id="@+id/label_seccion"
+        android:layout_width="192dp"
+        android:layout_height="18dp"
+        android:text="@string/label_val"
+        app:layout_constraintBottom_toBottomOf="@+id/textViewSeccion"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textViewSeccion"
+        app:layout_constraintTop_toTopOf="@+id/textViewSeccion" />
+
+    <ImageView
+        android:id="@+id/fotoPrenda"
+        android:layout_width="236dp"
+        android:layout_height="185dp"
+        android:src="@drawable/ropa"
+        app:layout_constraintBottom_toTopOf="@+id/button_foto"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:adjustViewBounds="false"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/label_tipo_prenda"
+        android:contentDescription="@string/todo" />
+
+    <ImageButton
+        android:id="@+id/button_foto"
+        android:layout_width="31dp"
+        android:layout_height="26dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_menu_camera"
+        app:layout_constraintBottom_toTopOf="@+id/buttonCancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tipo_prenda"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        android:text="@string/label_prenda"
+        app:layout_constraintEnd_toEndOf="@+id/textViewSeccion"
+        app:layout_constraintStart_toStartOf="@+id/textViewSeccion"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSeccion"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/label_tipo_prenda"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/label_val"
+        app:layout_constraintBottom_toBottomOf="@+id/tipo_prenda"
+        app:layout_constraintEnd_toEndOf="@+id/label_seccion"
+        app:layout_constraintStart_toStartOf="@+id/label_seccion"
+        app:layout_constraintTop_toTopOf="@+id/tipo_prenda" />
+</androidx.constraintlayout.widget.ConstraintLayout>

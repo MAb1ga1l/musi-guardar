@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">musi-guardar</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="tab_text_one">torso</string>
+    <string name="tab_text_two">piernas</string>
+    <string name="tab_text_three">pies</string>
+    <string name="textview">TextView</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_prenda">Tu nueva prenda</string>
+    <string name="buttonOK">Ok</string>
+    <string name="buttonCancel">Cancel</string>
+    <string name="prenda_nueva_text">Nueva Prenda</string>
+    <string name="outfit">Nuevo Outfit</string>
+    <string name="informe">Gráficos e informes</string>
+    <string name="seccion_en_guardar">"Tu prenda se guardara en: "</string>
+    <string name="label_val">val</string>
+    <string name="label_prenda">"Tipo de prenda: "</string>
+    <string name="todo">TODO</string>
+</resources>
