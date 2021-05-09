@@ -14,10 +14,8 @@
     <string name="tab_text_two">piernas</string>
     <string name="tab_text_three">pies</string>
     <string name="textview">TextView</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="text_prenda">Tu nueva prenda</string>
-    <string name="buttonOK">Ok</string>
     <string name="buttonCancel">Cancel</string>
     <string name="prenda_nueva_text">Nueva Prenda</string>
     <string name="outfit">Nuevo Outfit</string>
@@ -26,4 +24,9 @@
     <string name="label_val">val</string>
     <string name="label_prenda">"Tipo de prenda: "</string>
     <string name="todo">TODO</string>
+    <string name="textultimouso">último uso:</string>
+    <string name="textUsos">num usos</string>
+    <string name="fechaUltimoUso">--/--/--</string>
+    <string name="textnumusos">#</string>
+    <string name="textok">Ok</string>
 </resources>

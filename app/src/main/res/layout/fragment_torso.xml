@@ -6,12 +6,31 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.secciones.Torso">
 
-    <TextView
-        android:id="@+id/ejemploTorso"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tabla_recycler_view_torso_tipo1"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/tab_text_one"
-        android:textSize="30dp"
-        android:gravity="center"/>
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp"
+        android:padding="@dimen/activity_vertical_margin">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/tabla_recycler_view_torso_tipo2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/tabla_recycler_view_torso_tipo1"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginEnd="6dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginBottom="-231dp"
+        android:padding="@dimen/activity_vertical_margin">
+
+    </androidx.recyclerview.widget.RecyclerView>
 
 </RelativeLayout>

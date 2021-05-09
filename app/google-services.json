@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "603215519372",
+    "project_id": "musi-guardar-b8b4d",
+    "storage_bucket": "musi-guardar-b8b4d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:603215519372:android:8517a1f5a157963eb0a5a9",
+        "android_client_info": {
+          "package_name": "com.example.proyectofinal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "603215519372-6o4408qskjmjm5iv81c98882gbfp4vgi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACoH6w15y6ne3VJubgyWW5w4GBaO9CJt4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "603215519372-6o4408qskjmjm5iv81c98882gbfp4vgi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

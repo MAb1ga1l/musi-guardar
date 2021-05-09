@@ -33,7 +33,7 @@
         android:layout_marginLeft="64dp"
         android:layout_x="41dp"
         android:layout_y="265dp"
-        android:text="@string/buttonOK"
+        android:text="@string/textok"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

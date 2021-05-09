@@ -26,7 +26,6 @@ import java.io.File
 
 class AgregarPrendaFragment : Fragment() {
 
-    val inventarios = Inventarios()
     private lateinit var prenda: Prenda
     private lateinit var buttonOk: Button
     private lateinit var buttonCancel: Button
@@ -102,13 +101,13 @@ class AgregarPrendaFragment : Fragment() {
             flagOk = true
             //Para asegurar que exista una foto para guardar
             if(archivoFoto.exists()){
+                //Aqui justamente es donde llamaramiamos a python para q nos diga en que sección y que tipo de prenda es
                 prenda.seccionPrenda = labelSeccion.toString()
                 prenda.tipoPrenda = labelTipoPrenda.toString()
                 view?.let { it1 ->
                     Snackbar.make(it1, "Tu Prenda se ha guardado. Puedes agregar más", Snackbar.LENGTH_LONG)
                             .setAction("Action", null).show()
                 }
-                inventarios.agregaPrenda(prenda,labelSeccion.toString())
                 //Log.d("AGREGAR PRENDA","Se agregara ${prenda.fechaDeCreacion} id: ${prenda.idPrenda}")
                 prenda = Prenda()
                 //Log.d("AGREGAR PRENDA","Nueva Prenda ${prenda.fechaDeCreacion} id: ${prenda.idPrenda}")

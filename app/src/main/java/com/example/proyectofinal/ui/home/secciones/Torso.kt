@@ -1,48 +1,93 @@
 package com.example.proyectofinal.ui.home.secciones
 
+import android.annotation.SuppressLint
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.OrientationHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
-import com.example.proyectofinal.ui.filesPlus.Inventarios
-import java.nio.file.attribute.GroupPrincipal
+import com.example.proyectofinal.ui.filesPlus.Prenda
+import com.example.proyectofinal.ui.home.HomeViewModel
+import com.google.android.material.snackbar.Snackbar
+import okhttp3.*
+import java.io.IOException
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Torso.newInstance] factory method to
- * create an instance of this fragment.
- */
+
+
 class Torso : Fragment() {
 
-    val inventarios = Inventarios()
-    private lateinit var labelPrincipal: TextView
+    val inventarioTorso: MutableList<Prenda> = mutableListOf<Prenda>()
+    private val client = OkHttpClient()
+    private lateinit var tableRecyclerView: RecyclerView
+    private lateinit var tableRecyclerViewtwo: RecyclerView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //arguments?.let {}
+        for (i in 1 .. 20){
+            inventarioTorso.add(Prenda())
+        }
     }
 
+    @SuppressLint("WrongConstant")
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_torso, container, false)
-        labelPrincipal = vista.findViewById(R.id.ejemploTorso)
-        Log.d("TORSO","inventario recibido: ${inventarios.inventarioTorso.size}")
+        tableRecyclerView = vista.findViewById(R.id.tabla_recycler_view_torso_tipo1) as RecyclerView
+        tableRecyclerView.layoutManager = LinearLayoutManager(context,OrientationHelper.HORIZONTAL,false)
+        tableRecyclerView.adapter = PrendasAdapter(inventarioTorso)
+        tableRecyclerViewtwo = vista.findViewById(R.id.tabla_recycler_view_torso_tipo2) as RecyclerView
+        tableRecyclerViewtwo.layoutManager = LinearLayoutManager(context,OrientationHelper.HORIZONTAL,false)
+        tableRecyclerViewtwo.adapter = PrendasAdapter(inventarioTorso)
         return vista
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Torso().apply {
-                arguments = Bundle().apply {
-                }
-            }
+    private inner class PrendasAdapter(var inventarioT: List<Prenda>) : RecyclerView.Adapter<PrendaHolder>(){
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PrendaHolder {
+            val tarjeta = layoutInflater.inflate(R.layout.fragment_celda_prenda,parent,false)
+            return PrendaHolder(tarjeta)
+        }
+
+        override fun onBindViewHolder(holder: PrendaHolder, position: Int) {
+           val prenda = inventarioT[position]
+            holder.holderBinding(prenda)
+        }
+
+        override fun getItemCount() = inventarioT.size
+    }
+
+    private inner  class PrendaHolder(tarjeta:View): RecyclerView.ViewHolder(tarjeta), View.OnClickListener{
+        private lateinit var prenda: Prenda
+        val ultimoUsoTextView : TextView = itemView.findViewById(R.id.label_ultimo_uso)
+        val numUsosTextView: TextView = itemView.findViewById(R.id.label_num_usos)
+        val vistaFoto : ImageView = itemView.findViewById(R.id.prenda_imagen)
+
+        init{
+            itemView.setOnClickListener(this)
+        }
+
+        fun holderBinding(prenda: Prenda){
+            this.prenda = prenda
+            ultimoUsoTextView.text = prenda.ultimaFechaDeUso
+            numUsosTextView.text = prenda.Usos.size.toString()
+            vistaFoto.setImageResource(R.drawable.ropados)
+        }
+
+        override fun onClick(v: View?) {
+            //salrdan las opciones para eliminar o seleccionar como outfit diario
+        }
     }
 }
