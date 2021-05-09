@@ -29,4 +29,6 @@
     <string name="fechaUltimoUso">--/--/--</string>
     <string name="textnumusos">#</string>
     <string name="textok">Ok</string>
+    <string name="textbuttonadd">Guardar</string>
+    <string name="button_limpiar">Limpiar</string>
 </resources>
