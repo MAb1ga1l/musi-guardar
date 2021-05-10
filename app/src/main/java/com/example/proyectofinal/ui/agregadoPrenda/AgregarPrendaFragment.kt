@@ -1,9 +1,12 @@
 package com.example.proyectofinal.ui.agregadoPrenda
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
+import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.drawable.BitmapDrawable
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.os.Environment
@@ -23,6 +26,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import java.io.ByteArrayOutputStream
 import java.io.File
 
 class AgregarPrendaFragment : Fragment() {
@@ -40,6 +45,8 @@ class AgregarPrendaFragment : Fragment() {
     private  var listaSeccion= listOf("Torso","Piernas","Pies")
     private var listaTipo = listOf("dress","pants","shirt","shoes","shorts")
     private val db = Firebase.firestore
+    private val storage = Firebase.storage
+    private var mountainsRef =storage.reference
 
 
     private var flagOk : Boolean = false
@@ -96,7 +103,7 @@ class AgregarPrendaFragment : Fragment() {
         imageButton.apply {
             setOnClickListener {
                 val intentFoto = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                archivoFoto = getArchivoFoto("${prenda.idPrenda}.jpg")
+                archivoFoto = getArchivoFoto("fotoTemporal.jpg")
                 val fileProvider = FileProvider.getUriForFile(context,"com.example.proyectofinal.fileprovider",archivoFoto)
                 intentFoto.putExtra(MediaStore.EXTRA_OUTPUT,fileProvider)
                 try {
@@ -111,6 +118,8 @@ class AgregarPrendaFragment : Fragment() {
                 archivoFoto.delete()
                 imageView.setImageResource(R.drawable.ropa)
             }
+            labelSeccion.text = "-----"
+            labelTipoPrenda.text = "-----"
         }
 
         buttonOk.setOnClickListener {
@@ -133,6 +142,23 @@ class AgregarPrendaFragment : Fragment() {
                     .set(prendanueva)
                     .addOnSuccessListener { Log.d("PRENDAN", "DocumentSnapshot successfully written!") }
                     .addOnFailureListener { e -> Log.w("PRENDAN", "Error writing document", e) }
+                //subir foto a firebas
+                // Get the data from an ImageView as bytes
+                imageView.isDrawingCacheEnabled = true
+                imageView.buildDrawingCache()
+                val bitmap = (imageView.drawable as BitmapDrawable).bitmap
+                val baos = ByteArrayOutputStream()
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+                val data = baos.toByteArray()
+                mountainsRef = storage.reference.child("${prenda.idPrenda}.jpg")
+
+                var uploadTask = mountainsRef.putBytes(data)
+                uploadTask.addOnFailureListener {
+                    // Handle unsuccessful uploads
+                }.addOnSuccessListener { taskSnapshot ->
+                    // taskSnapshot.metadata contains file metadata such as size, content-type, etc.
+                    // ...
+                }
                 //-----
                 view?.let { it1 ->
                     Snackbar.make(it1, "Tu Prenda se ha guardado. Puedes agregar más", Snackbar.LENGTH_LONG)
@@ -186,25 +212,23 @@ class AgregarPrendaFragment : Fragment() {
     }
 
 
+    @SuppressLint("SetTextI18n")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if(requestCode == 1 && resultCode == Activity.RESULT_OK){
             val bitmapDeFoto = BitmapFactory.decodeFile(archivoFoto.absolutePath)
             labelSeccion.text = "Torso"
             labelTipoPrenda.text = "dress"
             imageView.setImageBitmap(bitmapDeFoto)
+
         }
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        //para evitar uso de memoria en imagenes innecesaria
-        if (!flagOk){
             //en caso de que se tome a foto pero no se termine el proceso ya sea con Ok o Cancelar
             if(archivoFoto.exists()){
                 archivoFoto.delete()
             }
-
-        }
     }
 
 }
