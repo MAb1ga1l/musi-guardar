@@ -21,5 +21,10 @@
             android:id="@+id/nav_agregar_prenda"
             android:icon="@android:drawable/ic_input_add"
             android:title="@string/prenda_nueva_text" />
+        <item
+            android:id="@+id/cerrar_perfil"
+            android:icon="?attr/actionModeCloseDrawable"
+            android:title="@string/cerrar_sesion" />
     </group>
+
 </menu>

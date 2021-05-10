@@ -13,15 +13,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.core.content.FileProvider
+import androidx.navigation.fragment.findNavController
 import com.example.proyectofinal.R
 import com.example.proyectofinal.ui.filesPlus.Inventarios
 import com.example.proyectofinal.ui.filesPlus.Prenda
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import java.io.File
 
 class AgregarPrendaFragment : Fragment() {
@@ -34,6 +35,13 @@ class AgregarPrendaFragment : Fragment() {
     private lateinit var archivoFoto: File
     private lateinit var labelSeccion :TextView
     private lateinit var labelTipoPrenda :TextView
+    private lateinit var spinnerSeccion: Spinner
+    private lateinit var spinnerTipo: Spinner
+    private  var listaSeccion= listOf("Torso","Piernas","Pies")
+    private var listaTipo = listOf("dress","pants","shirt","shoes","shorts")
+    private val db = Firebase.firestore
+
+
     private var flagOk : Boolean = false
 
     companion object {
@@ -61,6 +69,13 @@ class AgregarPrendaFragment : Fragment() {
         labelSeccion = vista.findViewById(R.id.label_seccion)
         labelTipoPrenda = vista.findViewById(R.id.label_tipo_prenda)
         archivoFoto = File(context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "${prenda.idPrenda}.jpg")
+        spinnerTipo = vista.findViewById(R.id.spinnerTipo)
+        spinnerSeccion = vista.findViewById(R.id.spinnerSeccion)
+
+        val adaptadorSeccion = context?.let { ArrayAdapter(it,android.R.layout.simple_spinner_item,listaSeccion) }
+        val adaptadorTipo = context?.let { ArrayAdapter(it,android.R.layout.simple_spinner_dropdown_item,listaTipo) }
+        spinnerSeccion.adapter = adaptadorSeccion
+        spinnerTipo.adapter = adaptadorTipo
 
         //foto predeterminada
         imageView.setImageResource(R.drawable.ropa)
@@ -71,7 +86,6 @@ class AgregarPrendaFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(AgregarPrendaViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onStart() {
@@ -102,15 +116,30 @@ class AgregarPrendaFragment : Fragment() {
             //Para asegurar que exista una foto para guardar
             if(archivoFoto.exists()){
                 //Aqui justamente es donde llamaramiamos a python para q nos diga en que sección y que tipo de prenda es
-                prenda.seccionPrenda = labelSeccion.toString()
-                prenda.tipoPrenda = labelTipoPrenda.toString()
+                prenda.seccionPrenda = labelSeccion.text.toString()
+                prenda.tipoPrenda = labelTipoPrenda.text.toString()
+                //Guardado en Firebase
+                val prendanueva = hashMapOf(
+                    "tipo" to prenda.tipoPrenda,
+                    "fechaUp" to prenda.fechaDeCreacion,
+                    "ultmafechaUso" to prenda.ultimaFechaDeUso,
+                    "seccion" to prenda.seccionPrenda,
+                    "usos" to prenda.Usos
+                )
+
+                db.collection("prendas").document(prenda.idPrenda)
+                    .set(prendanueva)
+                    .addOnSuccessListener { Log.d("PRENDAN", "DocumentSnapshot successfully written!") }
+                    .addOnFailureListener { e -> Log.w("PRENDAN", "Error writing document", e) }
+                //-----
                 view?.let { it1 ->
                     Snackbar.make(it1, "Tu Prenda se ha guardado. Puedes agregar más", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).show()
+                        .setAction("Action", null).show()
                 }
-                //Log.d("AGREGAR PRENDA","Se agregara ${prenda.fechaDeCreacion} id: ${prenda.idPrenda}")
+
                 prenda = Prenda()
-                //Log.d("AGREGAR PRENDA","Nueva Prenda ${prenda.fechaDeCreacion} id: ${prenda.idPrenda}")
+                labelSeccion.text = "-----"
+                labelTipoPrenda.text = "-----"
                 imageView.setImageResource(R.drawable.ropa)
 
             }else{
@@ -120,6 +149,33 @@ class AgregarPrendaFragment : Fragment() {
                 }
             }
         }
+
+        spinnerSeccion.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                labelSeccion.text = listaSeccion[position]
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+        }
+
+        spinnerTipo.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                position: Int,
+                id: Long
+            ) {
+                labelTipoPrenda.text = listaTipo[position]
+            }
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+
+        }
+
     }
 
     fun getArchivoFoto(nombreDeArchivo: String): File{

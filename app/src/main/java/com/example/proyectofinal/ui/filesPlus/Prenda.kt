@@ -14,7 +14,7 @@ class Prenda (): Parcelable {
     @SuppressLint("SimpleDateFormat")
     private var formatter = SimpleDateFormat("dd-MMMM-yyyy")
     var fechaDeCreacion : String = formatter.format(Date())
-    var ultimaFechaDeUso: String = formatter.format(Date())
+    var ultimaFechaDeUso: String = ""
     var Usos:ArrayList<String> = ArrayList()
     var seccionPrenda:String = ""
 

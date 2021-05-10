@@ -21,7 +21,7 @@
     <string name="outfit">Nuevo Outfit</string>
     <string name="informe">Gráficos e informes</string>
     <string name="seccion_en_guardar">"Tu prenda se guardara en: "</string>
-    <string name="label_val">val</string>
+    <string name="label_val">-----</string>
     <string name="label_prenda">"Tipo de prenda: "</string>
     <string name="todo">TODO</string>
     <string name="textultimouso">último uso:</string>
@@ -31,4 +31,13 @@
     <string name="textok">Ok</string>
     <string name="textbuttonadd">Guardar</string>
     <string name="button_limpiar">Limpiar</string>
+    <string name="textButtoninforme">Prenda</string>
+    <string name="textinforme">Informe de Prenda</string>
+    <string name="textsemana">Semanal</string>
+    <string name="textMensual">Mensual</string>
+    <string name="textEmail">Email</string>
+    <string name="textPassword">Password</string>
+    <string name="textRegistrar">Registrar</string>
+    <string name="textAcceder">Acceder</string>
+    <string name="cerrar_sesion">Cerrar Sesion</string>
 </resources>

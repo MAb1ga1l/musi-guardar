@@ -4,4 +4,79 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.slideshow.SlideshowFragment"/>
+    tools:context=".ui.slideshow.SlideshowFragment">
+
+    <ImageView
+        android:id="@+id/image_prenda_informe"
+        android:layout_width="114dp"
+        android:layout_height="143dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginRight="68dp"
+        android:src="@drawable/ropados"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.1" />
+
+    <TextView
+        android:id="@+id/text_prenda_informe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textinforme"
+        app:layout_constraintBottom_toBottomOf="@+id/image_prenda_informe"
+        app:layout_constraintEnd_toStartOf="@+id/image_prenda_informe"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/image_prenda_informe" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/textsemana"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_prenda_informe"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="200dp"
+        android:text="@string/textMensual"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView8"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textView8" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bar_chart_semanal"
+        android:layout_width="287dp"
+        android:layout_height="148dp"
+        app:layout_constraintBottom_toTopOf="@+id/textView9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bar_chart_mensual"
+        android:layout_width="282dp"
+        android:layout_height="173dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/bar_chart_semanal"
+        app:layout_constraintStart_toStartOf="@+id/bar_chart_semanal"
+        app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+    <ImageButton
+        android:id="@+id/agregar_prenda_informe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@android:drawable/ic_menu_add"
+        app:layout_constraintBottom_toTopOf="@+id/text_prenda_informe"
+        app:layout_constraintEnd_toEndOf="@+id/text_prenda_informe"
+        app:layout_constraintStart_toStartOf="@+id/text_prenda_informe"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
