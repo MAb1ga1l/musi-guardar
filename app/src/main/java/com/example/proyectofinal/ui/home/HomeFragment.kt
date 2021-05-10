@@ -9,12 +9,11 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.example.proyectofinal.R
+import com.example.proyectofinal.ui.filesPlus.Inventarios
 import com.example.proyectofinal.ui.home.secciones.PiernasFragment
 import com.example.proyectofinal.ui.home.secciones.PiesFragment
 import com.example.proyectofinal.ui.home.secciones.Torso
 import com.google.android.material.tabs.TabLayout
-import okhttp3.MediaType
-import okhttp3.RequestBody
 
 
 class HomeFragment : Fragment() {
@@ -34,6 +33,7 @@ class HomeFragment : Fragment() {
 
         //Para cargar los fragmentos y los titulos en el TabLayout
         val viewPagerAdapter = ViewPagerAdapter(childFragmentManager)  
+
 
         viewPagerAdapter.addFragment(Torso(), "Torso")
         viewPagerAdapter.addFragment(PiernasFragment(), "Piernas")

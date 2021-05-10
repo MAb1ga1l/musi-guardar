@@ -22,7 +22,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.164">
+        app:layout_constraintVertical_bias="0.119">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -38,10 +38,10 @@
         android:padding="@dimen/activity_vertical_margin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView_pants"
-        app:layout_constraintVertical_bias="0.771">
+        app:layout_constraintVertical_bias="0.424">
 
     </androidx.recyclerview.widget.RecyclerView>
 
@@ -74,6 +74,22 @@
         app:layout_constraintBottom_toTopOf="@+id/recyclerView_shorts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recyclerView_pants"
-        app:layout_constraintVertical_bias="0.487" />
+        app:layout_constraintVertical_bias="0.294" />
+
+    <ImageButton
+        android:id="@+id/buttonreload"
+        android:layout_width="36dp"
+        android:layout_height="34dp"
+        android:layout_marginStart="359dp"
+        android:layout_marginLeft="359dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:src="@android:drawable/ic_menu_rotate"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recyclerView_shorts" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
