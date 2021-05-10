@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/prenda_imagen"
-        android:layout_width="109dp"
-        android:layout_height="148dp"
+        android:layout_width="92dp"
+        android:layout_height="97dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
@@ -28,12 +28,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="8dp"
         android:text="@string/textultimouso"
         app:layout_constraintBottom_toTopOf="@+id/textusos"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/prenda_imagen"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toBottomOf="@+id/prenda_imagen" />
 
     <TextView
         android:id="@+id/textusos"

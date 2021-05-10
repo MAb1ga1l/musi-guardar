@@ -40,4 +40,10 @@
     <string name="textRegistrar">Registrar</string>
     <string name="textAcceder">Acceder</string>
     <string name="cerrar_sesion">Cerrar Sesion</string>
+    <string name="TextTitulo1">dress</string>
+    <string name="textTitulo2">shirt</string>
+    <string name="textTitulo3">shoes</string>
+    <string name="TextTitulo4">pants</string>
+    <string name="TextTitulo5">shorts</string>
+
 </resources>

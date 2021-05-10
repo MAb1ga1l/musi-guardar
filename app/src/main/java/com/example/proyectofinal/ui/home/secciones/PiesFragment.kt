@@ -13,15 +13,16 @@ import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
 import com.example.proyectofinal.ui.filesPlus.Prenda
-import okhttp3.OkHttpClient
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class PiesFragment : Fragment() {
 
     //Adaptar al inventario de la sección a traves de firebase
     val inventarioTorso: MutableList<Prenda> = mutableListOf<Prenda>()
-    private lateinit var tableRecyclerView: RecyclerView
-    private lateinit var tableRecyclerViewtwo: RecyclerView
+    private lateinit var tableRecyclerViewShoes: RecyclerView
+    private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,14 +38,10 @@ class PiesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_pies, container, false)
-        tableRecyclerView = vista.findViewById(R.id.tabla_recycler_view_torso_tipo1) as RecyclerView
-        tableRecyclerView.layoutManager = LinearLayoutManager(context,
+        tableRecyclerViewShoes = vista.findViewById(R.id.recyclerView_shoes) as RecyclerView
+        tableRecyclerViewShoes.layoutManager = LinearLayoutManager(context,
             OrientationHelper.HORIZONTAL,false)
-        tableRecyclerView.adapter = PrendasAdapter(inventarioTorso)
-        tableRecyclerViewtwo = vista.findViewById(R.id.tabla_recycler_view_torso_tipo2) as RecyclerView
-        tableRecyclerViewtwo.layoutManager = LinearLayoutManager(context,
-            OrientationHelper.HORIZONTAL,false)
-        tableRecyclerViewtwo.adapter = PrendasAdapter(inventarioTorso)
+        tableRecyclerViewShoes.adapter = PrendasAdapter(inventarioTorso)
         return vista
     }
 
@@ -76,7 +73,7 @@ class PiesFragment : Fragment() {
             this.prenda = prenda
             ultimoUsoTextView.text = prenda.ultimaFechaDeUso
             numUsosTextView.text = prenda.Usos.size.toString()
-            vistaFoto.setImageResource(R.drawable.ropados)
+            vistaFoto.setImageResource(R.drawable.zapatos)
         }
 
         override fun onClick(v: View?) {

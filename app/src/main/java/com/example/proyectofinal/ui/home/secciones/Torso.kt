@@ -1,34 +1,25 @@
 package com.example.proyectofinal.ui.home.secciones
 
 import android.annotation.SuppressLint
-import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
 import com.example.proyectofinal.ui.filesPlus.Prenda
-import com.example.proyectofinal.ui.home.HomeViewModel
-import com.google.android.material.snackbar.Snackbar
-import okhttp3.*
-import java.io.IOException
-
 
 
 class Torso : Fragment() {
 
     val inventarioTorso: MutableList<Prenda> = mutableListOf<Prenda>()
-    private val client = OkHttpClient()
-    private lateinit var tableRecyclerView: RecyclerView
-    private lateinit var tableRecyclerViewtwo: RecyclerView
+    private lateinit var tableRecyclerViewDress: RecyclerView
+    private lateinit var tableRecyclerViewShirt: RecyclerView
 
 
 
@@ -46,12 +37,12 @@ class Torso : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_torso, container, false)
-        tableRecyclerView = vista.findViewById(R.id.tabla_recycler_view_torso_tipo1) as RecyclerView
-        tableRecyclerView.layoutManager = LinearLayoutManager(context,OrientationHelper.HORIZONTAL,false)
-        tableRecyclerView.adapter = PrendasAdapter(inventarioTorso)
-        tableRecyclerViewtwo = vista.findViewById(R.id.tabla_recycler_view_torso_tipo2) as RecyclerView
-        tableRecyclerViewtwo.layoutManager = LinearLayoutManager(context,OrientationHelper.HORIZONTAL,false)
-        tableRecyclerViewtwo.adapter = PrendasAdapter(inventarioTorso)
+        tableRecyclerViewDress = vista.findViewById(R.id.recyclerView_dress) as RecyclerView
+        tableRecyclerViewDress.layoutManager = LinearLayoutManager(context,OrientationHelper.HORIZONTAL,false)
+        tableRecyclerViewDress.adapter = PrendasAdapter(inventarioTorso)
+        tableRecyclerViewShirt = vista.findViewById(R.id.recyclerView_shirt) as RecyclerView
+        tableRecyclerViewShirt.layoutManager = LinearLayoutManager(context,OrientationHelper.HORIZONTAL,false)
+        tableRecyclerViewShirt.adapter = PrendasAdapter(inventarioTorso)
         return vista
     }
 

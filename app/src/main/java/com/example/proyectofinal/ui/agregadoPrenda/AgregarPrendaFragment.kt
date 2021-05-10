@@ -69,6 +69,8 @@ class AgregarPrendaFragment : Fragment() {
         labelSeccion = vista.findViewById(R.id.label_seccion)
         labelTipoPrenda = vista.findViewById(R.id.label_tipo_prenda)
         archivoFoto = File(context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES), "${prenda.idPrenda}.jpg")
+        labelSeccion.text = "-----"
+        labelTipoPrenda.text = "-----"
         spinnerTipo = vista.findViewById(R.id.spinnerTipo)
         spinnerSeccion = vista.findViewById(R.id.spinnerSeccion)
 
@@ -127,7 +129,7 @@ class AgregarPrendaFragment : Fragment() {
                     "usos" to prenda.Usos
                 )
 
-                db.collection("prendas").document(prenda.idPrenda)
+                db.collection(labelSeccion.text.toString()).document(prenda.idPrenda)
                     .set(prendanueva)
                     .addOnSuccessListener { Log.d("PRENDAN", "DocumentSnapshot successfully written!") }
                     .addOnFailureListener { e -> Log.w("PRENDAN", "Error writing document", e) }
@@ -188,7 +190,7 @@ class AgregarPrendaFragment : Fragment() {
         if(requestCode == 1 && resultCode == Activity.RESULT_OK){
             val bitmapDeFoto = BitmapFactory.decodeFile(archivoFoto.absolutePath)
             labelSeccion.text = "Torso"
-            labelTipoPrenda.text = "Blusa"
+            labelTipoPrenda.text = "dress"
             imageView.setImageBitmap(bitmapDeFoto)
         }
     }

@@ -2,6 +2,7 @@ package com.example.proyectofinal.ui.home.secciones
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -13,17 +14,32 @@ import androidx.recyclerview.widget.OrientationHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.proyectofinal.R
 import com.example.proyectofinal.ui.filesPlus.Prenda
-import okhttp3.OkHttpClient
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class PiernasFragment : Fragment() {
 
     //Adaptar al inventario de la sección a traves de firebase
     val inventarioTorso: MutableList<Prenda> = mutableListOf<Prenda>()
-    private lateinit var tableRecyclerView: RecyclerView
-    private lateinit var tableRecyclerViewtwo: RecyclerView
+    val inventarioPants: MutableList<Prenda> = mutableListOf<Prenda>()
+    private lateinit var tableRecyclerViewPans: RecyclerView
+    private lateinit var tableRecyclerViewShorts: RecyclerView
+    private val db = Firebase.firestore
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val prendaParaAgregar = Prenda()
+        db.collection("Piernas").whereEqualTo("tipo","pants").get()
+            .addOnSuccessListener { documents ->
+                for (document in documents){
+                    prendaParaAgregar.tipoPrenda = document.data.get("tipo") as String
+                    prendaParaAgregar.idPrenda = document.id
+                    prendaParaAgregar.ultimaFechaDeUso = document.data.get("ultmafechaUso") as String
+                    prendaParaAgregar.Usos = document.data.get("usos") as ArrayList<String>
+                    prendaParaAgregar.fechaDeCreacion= document.data.get("fechaUp") as String
+                    inventarioTorso.add(prendaParaAgregar)
+                }
+            }
         for (i in 1 .. 20){
             inventarioTorso.add(Prenda())
         }
@@ -36,14 +52,14 @@ class PiernasFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val vista = inflater.inflate(R.layout.fragment_piernas, container, false)
-        tableRecyclerView = vista.findViewById(R.id.tabla_recycler_view_torso_tipo1) as RecyclerView
-        tableRecyclerView.layoutManager = LinearLayoutManager(context,
+        tableRecyclerViewPans = vista.findViewById(R.id.recyclerView_pants) as RecyclerView
+        tableRecyclerViewPans.layoutManager = LinearLayoutManager(context,
             OrientationHelper.HORIZONTAL,false)
-        tableRecyclerView.adapter = PrendasAdapter(inventarioTorso)
-        tableRecyclerViewtwo = vista.findViewById(R.id.tabla_recycler_view_torso_tipo2) as RecyclerView
-        tableRecyclerViewtwo.layoutManager = LinearLayoutManager(context,
+        tableRecyclerViewPans.adapter = PrendasAdapter(inventarioPants)
+        tableRecyclerViewShorts = vista.findViewById(R.id.recyclerView_shorts) as RecyclerView
+        tableRecyclerViewShorts.layoutManager = LinearLayoutManager(context,
             OrientationHelper.HORIZONTAL,false)
-        tableRecyclerViewtwo.adapter = PrendasAdapter(inventarioTorso)
+        tableRecyclerViewShorts.adapter = PrendasAdapter(inventarioTorso)
         return vista
     }
 
@@ -73,9 +89,9 @@ class PiernasFragment : Fragment() {
 
         fun holderBinding(prenda: Prenda){
             this.prenda = prenda
-            ultimoUsoTextView.text = prenda.ultimaFechaDeUso
+            ultimoUsoTextView.text = "QUE"
             numUsosTextView.text = prenda.Usos.size.toString()
-            vistaFoto.setImageResource(R.drawable.ropados)
+            vistaFoto.setImageResource(R.drawable.pantalon)
         }
 
         override fun onClick(v: View?) {
