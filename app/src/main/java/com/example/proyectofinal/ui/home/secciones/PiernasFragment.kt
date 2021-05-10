@@ -74,7 +74,6 @@ class PiernasFragment() : Fragment() {
     ): View? {
 
         // Inflate the layout for this fragment
-        Log.d("PIERNAS","pants: ${inventarioPants.size} shorts: ${inventarioShorts}")
         if (inventarioPants.size == 0){
             inventarioPants.add(Prenda())
         }
@@ -155,7 +154,7 @@ class PiernasFragment() : Fragment() {
             this.prenda = prenda
             ultimoUsoTextView.text = prenda.ultimaFechaDeUso
             numUsosTextView.text = prenda.Usos.size.toString()
-            //val gsReference = storage.getReferenceFromUrl("")
+            //cargar imagen en file
             storage.getReferenceFromUrl("https://firebasestorage.googleapis.com/v0/b/musi-guardar-b8b4d.appspot.com/o/${prenda.idPrenda}.jpg")
                 .downloadUrl.addOnSuccessListener {
                 // Got the download URL for 'users/me/profile.png'
